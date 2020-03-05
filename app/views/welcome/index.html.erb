@@ -1,10 +1,11 @@
 <body>
- <script defer src="https://www.gstatic.com/firebasejs/7.9.3/firebase-app.js"></script>
+  <% content_for :parent_js do %>
+    <%= javascript_include_tag "https://www.gstatic.com/firebasejs/7.9.3/firebase-app.js"%>
+    <%= javascript_include_tag "https://www.gstatic.com/firebasejs/7.9.3/firebase-auth.js" %>
+    <%= javascript_include_tag "https://www.gstatic.com/firebasejs/7.9.3/firebase-firestore.js" %>
+    <%= javascript_include_tag "https://www.gstatic.com/firebasejs/7.9.3/firebase-messaging.js" %>
 
-<script defer src="https://www.gstatic.com/firebasejs/7.9.3/firebase-auth.js"></script>
-<script defer src="https://www.gstatic.com/firebasejs/7.9.3/firebase-firestore.js"></script>
+  <% end%>
+Test
 
-// ...
-
-<script defer src="../../assets/javascripts/init-firebase.js"></script>
 </body>
