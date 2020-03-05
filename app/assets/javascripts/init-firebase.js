@@ -30,7 +30,7 @@ function sendTokenToServer(token) {
     }
   };
   var formData = new FormData();
-  formData.append('browser_id', `browser_id=${token}`)
+  formData.append('browser_id', token)
   xhttp.open("POST", "welcome", true);
   xhttp.send(formData);
 }
