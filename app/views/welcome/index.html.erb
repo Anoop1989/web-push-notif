@@ -104,10 +104,13 @@ img {
 
 </style>
 <body>
- <script defer src="https://www.gstatic.com/firebasejs/7.9.3/firebase-app.js"></script>
+  <% content_for :parent_js do %>
+    <%= javascript_include_tag "https://www.gstatic.com/firebasejs/7.9.3/firebase-app.js"%>
+    <%= javascript_include_tag "https://www.gstatic.com/firebasejs/7.9.3/firebase-auth.js" %>
+    <%= javascript_include_tag "https://www.gstatic.com/firebasejs/7.9.3/firebase-firestore.js" %>
+    <%= javascript_include_tag "https://www.gstatic.com/firebasejs/7.9.3/firebase-messaging.js" %>
+<%end%>
 
-<script defer src="https://www.gstatic.com/firebasejs/7.9.3/firebase-auth.js"></script>
-<script defer src="https://www.gstatic.com/firebasejs/7.9.3/firebase-firestore.js"></script>
 <div class='container'>
     <nav class='header'>
        <h1>Web Push Notifications</h1>
