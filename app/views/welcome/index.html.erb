@@ -1,10 +1,138 @@
+<html>
+<head>
+<script defer src="https://www.gstatic.com/firebasejs/7.9.3/firebase-app.js"></script>
+
+<script defer src="https://www.gstatic.com/firebasejs/7.9.3/firebase-auth.js"></script>
+<script defer src="https://www.gstatic.com/firebasejs/7.9.3/firebase-firestore.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Muli&display=swap" rel="stylesheet">
+</head>
+
+
+
+<script>
+function onSubmit() {
+    var notificationTitle = document.getElementById('n-title').value;
+    var notificationMessage = document.getElementById('n-message').value;
+    var notificationUrl = document.getElementById('n-url').value;
+    var notificationImage = document.getElementById('n-image').checked;
+    var notificationButtons = document.getElementById('n-buttons').checked;
+
+    console.log({notificationTitle, notificationMessage, notificationUrl, notificationButtons, notificationImage})
+
+
+}
+</script>
+
+<style>
+
+
+.container {
+    text-align: -webkit-center;
+}
+.header{
+    height: 50px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+main {
+    display: flex;
+    justify-content: center;
+    background-image: linear-gradient(to right, #5cd5ff,  #38e5af);
+    width: 80%;
+    align-items: center;
+}
+
+.input-section {
+   padding: 20px;
+   width: 500px;
+}
+
+.input-field {
+    width: 400px;
+    height: 30px;
+    border-radius: 5px;
+    border: 1px solid lightgrey;
+}
+
+.section {
+    padding-right: 20px;
+    border-right: 1px solid white;
+}
+
+.section-two {
+    padding-right: 20px;
+    display: flex;
+    flex-direction : column;
+    justify-content: space-between;
+    align-content: space-between;
+    height: 200px;
+}
+
+h3 {
+    color: black;
+    font-weight: 600;
+    font-family: 'Muli', sans-serif;
+}
+
+
+label {
+    color: black;
+    font-weight: 600;
+    font-family: 'Muli', sans-serif;
+
+}
+
+button {
+    height: 50px;
+    width: 500px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+img {
+    padding-left: 100px;
+}
+
+.checkbox {
+    display: flex;
+    align-items: center;
+}
+
+
+
+</style>
 <body>
  <script defer src="https://www.gstatic.com/firebasejs/7.9.3/firebase-app.js"></script>
 
 <script defer src="https://www.gstatic.com/firebasejs/7.9.3/firebase-auth.js"></script>
 <script defer src="https://www.gstatic.com/firebasejs/7.9.3/firebase-firestore.js"></script>
+<div class='container'>
+    <nav class='header'>
+       <h1>Web Push Notifications</h1>
+    </nav>
+    <form>
+        <main>
+            <div class='input-section'>
+            <div class='section'>
+                    <h3>Notification Title</h3><br>
+                    <input class='input-field' id='n-title' type='text'> <br>
+                    <h3>Notification Message</h3><br>
+                    <input class='input-field' id='n-message' type='text'> <br>
+                    <h3>Notification URL</h3><br>
+                    <input class='input-field'  id='n-url' type='text'> <br>
+                </div>
+            </div>
+            <div class='input-section'>
+               <div class='section-two'>
+                <span  class='checkbox'><input id='n-image' type='checkbox'  name='Notification'> &nbsp; &nbsp; <label> Notification Image</label></span> 
+                <span class='checkbox'>   <input id='n-buttons' type='checkbox'>  &nbsp; &nbsp; <label> Show Buttons</label></span> 
+                <button onclick='onSubmit()'>Send Notification</button></div>
+            </div>
+        </main>
+    </form>
+</div>
 
-// ...
-
-<script defer src="../../assets/javascripts/init-firebase.js"></script>
 </body>
+</html>
