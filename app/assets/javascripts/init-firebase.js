@@ -12,12 +12,25 @@ const firebaseConfig = {
   const messaging = firebase.messaging();
   messaging.requestPermission().then(function(){
     console.log("Have Permission");
-     console.log(messaging.getToken());
+     return messaging.getToken();
   }).
-  then(function(){
-    console.log(token);
+  then(function(token){
+    sendTokenToServer(token);
   }).
   catch(function(err){
     console.log("Error-- ", err);
   })
 
+
+function sendTokenToServer(token) {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      console.log("Success");
+    }
+  };
+  var formData = new FormData();
+  formData.append('browser_id', `browser_id=${token}`)
+  xhttp.open("POST", "welcome", true);
+  xhttp.send(formData);
+}
