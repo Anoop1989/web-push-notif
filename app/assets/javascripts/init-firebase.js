@@ -10,7 +10,10 @@ const firebaseConfig = {
   firebase.initializeApp(firebaseConfig);
 
   const messaging = firebase.messaging();
-  messaging.requestPermission().then(function(){
+
+  messaging.usePublicVapidKey("BGAzMcy2xMSHEb8n_LriWtZYdyQygJq1CToIMVuuPVlDk2do2tQYhbogBmzEygxWrh8-5RZlpEVMs4AL8EMes_0");
+
+    messaging.requestPermission().then(function(){
     console.log("Have Permission");
      return messaging.getToken();
   }).
@@ -34,3 +37,11 @@ function sendTokenToServer(token) {
   xhttp.open("POST", "welcome", true);
   xhttp.send(formData);
 }
+
+messaging.onMessage(function(payload){
+  var obj = JSON.parse(payload.data.notification);
+  var notification = new Notification(obj.title, {
+    icon: obj.icon,
+    body: obj.body
+  });
+})
