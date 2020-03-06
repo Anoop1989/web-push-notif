@@ -12,6 +12,15 @@ class WelcomeController < ApplicationController
     render json: { message: 'Unable to proceed. Please contact support!'}, status: :forbidden
   end
 
+  def demo
+  end
+
+  def landing
+  end
+
+  def homepage
+  end
+
   private
 
   def notify_params
