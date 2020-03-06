@@ -1,3 +1,4 @@
+
 importScripts("https://www.gstatic.com/firebasejs/7.9.3/firebase-app.js")
 importScripts("https://www.gstatic.com/firebasejs/7.9.3/firebase-messaging.js")
 
@@ -14,14 +15,28 @@ const firebaseConfig = {
   firebase.initializeApp(firebaseConfig);
   const messaging = firebase.messaging();
 
-  messaging.setBackgroundMessageHandler(function(payload){
 
-  var obj = JSON.parse(payload.data.notification);
-  var notificationTitle = obj.title;
-  var notificationOptions = {
-    icon: obj.icon,
-    body: obj.body
+  messaging.setBackgroundMessageHandler(function(payload) {
+  console.log('[firebase-messaging-sw.js] Received background message ', payload);
+  const notificationTitle = payload.data.title;
+  const notificationOptions = {
+  body: payload.data.body,
+    icon: payload.data.icon,
+    image: payload.data.image,
+    click_action: "https://google.com"
+  };
+  self.addEventListener('notificationclick', function(event) {
+  console.log(event.notification.data.click_action);
+  if (!event.action) {
+  console.log('Notification Click.');
+  console.log(event.notification.data.click_action)
+  self.clients.openWindow('https://www.youtube.com', '_blank')
+  event.notification.close();
+  return;
+  }else{
+  event.notification.close();
   }
-    return self.registration.showNotification(notificationTitle, notificationOptions);
-
-  })
+  });
+  return self.registration.showNotification(notificationTitle,
+  notificationOptions);
+  });
