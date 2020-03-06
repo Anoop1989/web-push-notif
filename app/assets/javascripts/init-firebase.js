@@ -28,31 +28,31 @@ const firebaseConfig = {
   })
 
 function onSubmit() {
-  var xhttp = new XMLHttpRequest();
+  // var xhttp = new XMLHttpRequest();
 
-    var title = document.getElementById('n-title').value;
-    var body = document.getElementById('n-message').value;
-    var url = document.getElementById('n-url').value;
-    var add_icon = document.getElementById('n-image').checked;
+  //   var title = document.getElementById('n-title').value;
+  //   var body = document.getElementById('n-message').value;
+  //   var url = document.getElementById('n-url').value;
+  //   var add_icon = document.getElementById('n-image').checked;
 
-        const content = {
-            title, body, url, icon: 'http://localhost:8000/assets/flying-bird.png',
-        }
+  //       const content = {
+  //           title, body, url, icon: 'http://localhost:8000/assets/flying-bird.png',
+  //       }
 
-    // fetch('http://localhost:8000/message/send', {
-    //   method: 'POST',
-    //   body: JSON.stringify({
-    //     browser_id, content, add_icon
+  //   // fetch('http://localhost:8000/message/send', {
+  //   //   method: 'POST',
+  //   //   body: JSON.stringify({
+  //   //     browser_id, content, add_icon
 
-    // })}
-    // )
+  //   // })}
+  //   // )
 
-    var formData = new FormData();
-    formData.append('browser_id', browser_id)
-    formData.append('content', JSON.stringify(content) )
-    formData.append('add_icon', add_icon)
-    xhttp.open("POST", "message/send", true);
-    xhttp.send(formData);
+  //   var formData = new FormData();
+  //   formData.append('browser_id', browser_id)
+  //   formData.append('content', JSON.stringify(content) )
+  //   formData.append('add_icon', add_icon)
+  //   xhttp.open("POST", "message/send", true);
+  //   xhttp.send(formData);
 }
 
 
