@@ -8,20 +8,6 @@
 </head>
 
 
-
-<script>
-function onSubmit() {
-    var notificationTitle = document.getElementById('n-title').value;
-    var notificationMessage = document.getElementById('n-message').value;
-    var notificationUrl = document.getElementById('n-url').value;
-    var notificationImage = document.getElementById('n-image').checked;
-
-    console.log({notificationTitle, notificationMessage, notificationUrl, notificationButtons, notificationImage})
-
-
-}
-</script>
-
 <style>
 
 
@@ -123,7 +109,7 @@ img {
     <nav class='header'>
        <h1>Web Push Notification</h1>
     </nav>
-    <form>
+    <%# <form> %>
         <main>
             <div class='input-section'>
             <div class='section'>
@@ -139,7 +125,7 @@ img {
             </div>
           
         </main>
-    </form>
+    <%# </form> %>
 </div>
 
 </body>

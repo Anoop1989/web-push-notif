@@ -1,3 +1,4 @@
+let browser_id = null;
 const firebaseConfig = {
     apiKey: "AIzaSyDud2lNsuXE1EOtoUT0eWnApF7yp43LJi0",
     authDomain: "web-push-notification-270206.firebaseapp.com",
@@ -18,11 +19,41 @@ const firebaseConfig = {
      return messaging.getToken();
   }).
   then(function(token){
+    console.log('token',token)
+    browser_id = token;
     sendTokenToServer(token);
   }).
   catch(function(err){
     console.log("Error-- ", err);
   })
+
+function onSubmit() {
+  var xhttp = new XMLHttpRequest();
+
+    var title = document.getElementById('n-title').value;
+    var body = document.getElementById('n-message').value;
+    var url = document.getElementById('n-url').value;
+    var add_icon = document.getElementById('n-image').checked;
+ 
+        const content = {
+            title, body, url: 'https://www.reflektive.com/', icon: 'http://localhost:8000/assets/flying-bird.png',
+        }
+       
+    // fetch('http://localhost:8000/message/send', {
+    //   method: 'POST',
+    //   body: JSON.stringify({
+    //     browser_id, content, add_icon
+      
+    // })}
+    // )    
+
+    var formData = new FormData();
+    formData.append('browser_id', browser_id)
+    formData.append('content', JSON.stringify(content) )
+    formData.append('add_icon', add_icon)
+    xhttp.open("POST", "message/send", true);
+    xhttp.send(formData);
+}
 
 
 function sendTokenToServer(token) {

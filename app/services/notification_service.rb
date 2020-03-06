@@ -1,6 +1,6 @@
 class NotificationService
   def initialize(feed, recepient_ids, icon_url)
-    @feed = feed
+    @feed = feed.is_a?(String) ? JSON.parse(feed) : feed 
     @service_name = "fcm"
     @recepient_ids = recepient_ids
     @icon_url = icon_url

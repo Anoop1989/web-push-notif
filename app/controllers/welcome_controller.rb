@@ -36,6 +36,7 @@ class WelcomeController < ApplicationController
   end
 
   def message_send_params
+    params[:content] = params[:content].is_a?(String) ? JSON.parse(params[:content]) : params[:content] 
     params.permit({:content => [:title, :body, :url, :icon]}, :browser_id, :add_icon)
   end
 
