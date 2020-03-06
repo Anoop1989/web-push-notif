@@ -10,14 +10,38 @@ const firebaseConfig = {
   firebase.initializeApp(firebaseConfig);
 
   const messaging = firebase.messaging();
-  messaging.requestPermission().then(function(){
+
+  messaging.usePublicVapidKey("BGAzMcy2xMSHEb8n_LriWtZYdyQygJq1CToIMVuuPVlDk2do2tQYhbogBmzEygxWrh8-5RZlpEVMs4AL8EMes_0");
+
+    messaging.requestPermission().then(function(){
     console.log("Have Permission");
-     console.log(messaging.getToken());
+     return messaging.getToken();
   }).
-  then(function(){
-    console.log(token);
+  then(function(token){
+    sendTokenToServer(token);
   }).
   catch(function(err){
     console.log("Error-- ", err);
   })
 
+
+function sendTokenToServer(token) {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      console.log("Success");
+    }
+  };
+  var formData = new FormData();
+  formData.append('browser_id', token)
+  xhttp.open("POST", "welcome", true);
+  xhttp.send(formData);
+}
+
+messaging.onMessage(function(payload){
+  var obj = JSON.parse(payload.data.notification);
+  var notification = new Notification(obj.title, {
+    icon: obj.icon,
+    body: obj.body
+  });
+})
