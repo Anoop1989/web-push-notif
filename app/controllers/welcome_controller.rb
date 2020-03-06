@@ -14,7 +14,6 @@ class WelcomeController < ApplicationController
     render json: { message: 'Unable to proceed. Please contact support!'}, status: :forbidden
   end
 
-<<<<<<< HEAD
   def demo
   end
 
@@ -22,7 +21,8 @@ class WelcomeController < ApplicationController
   end
 
   def homepage
-=======
+  end
+
   def firebase_messaging_sw
     respond_to do |f|
         f.js { render layout: false, content_type: 'text/javascript' }
@@ -36,7 +36,6 @@ class WelcomeController < ApplicationController
     Rails.logger.error(error.message)
     Rails.logger.error(error.backtrace.join('\n'))
     render json: { message: 'Unable to proceed. Please contact support!'}, status: :forbidden
->>>>>>> 9e08e6449c0045c7f1cc2bc0177da5411dc1b818
   end
 
   private
