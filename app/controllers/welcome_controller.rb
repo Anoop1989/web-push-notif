@@ -14,6 +14,15 @@ class WelcomeController < ApplicationController
     render json: { message: 'Unable to proceed. Please contact support!'}, status: :forbidden
   end
 
+  def demo
+  end
+
+  def landing
+  end
+
+  def homepage
+  end
+
   def firebase_messaging_sw
     respond_to do |f|
         f.js { render layout: false, content_type: 'text/javascript' }
