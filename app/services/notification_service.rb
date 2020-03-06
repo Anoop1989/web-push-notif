@@ -1,6 +1,6 @@
 class NotificationService
   def initialize(feed, recepient_ids, icon_url)
-    @feed = feed.is_a?(String) ? JSON.parse(feed) : feed 
+    @feed = feed.is_a?(String) ? JSON.parse(feed) : feed
     @service_name = "fcm"
     @recepient_ids = recepient_ids
     @icon_url = icon_url
@@ -15,7 +15,7 @@ class NotificationService
     fcm = FCM.new(construct_fcm_config['server_key'])
     registration_ids = @recepient_ids
 
-    response = fcm.send(registration_ids, construct_fcm_config['message'])
+    fcm.send(registration_ids, construct_fcm_config['message'])
   end
 
   def construct_fcm_config

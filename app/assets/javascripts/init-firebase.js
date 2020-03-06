@@ -34,18 +34,18 @@ function onSubmit() {
     var body = document.getElementById('n-message').value;
     var url = document.getElementById('n-url').value;
     var add_icon = document.getElementById('n-image').checked;
- 
+
         const content = {
-            title, body, url: 'https://www.reflektive.com/', icon: 'http://localhost:8000/assets/flying-bird.png',
+            title, body, url, icon: 'http://localhost:8000/assets/flying-bird.png',
         }
-       
+
     // fetch('http://localhost:8000/message/send', {
     //   method: 'POST',
     //   body: JSON.stringify({
     //     browser_id, content, add_icon
-      
+
     // })}
-    // )    
+    // )
 
     var formData = new FormData();
     formData.append('browser_id', browser_id)
@@ -69,8 +69,8 @@ function sendTokenToServer(token) {
   xhttp.send(formData);
 }
 
-messaging.onMessage(function(payload){
-  var obj = JSON.parse(payload.data.notification);
+messaging.onMessage(function({ notification}){
+  var obj = notification;
   var notification = new Notification(obj.title, {
     icon: obj.icon,
     body: obj.body
